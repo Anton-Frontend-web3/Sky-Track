@@ -22,7 +22,7 @@ export function UpdateProfileForm() {
     resolver: zodResolver(updateProfileSchema),
   })
 
-  // Загружаем существующее имя при старте
+  
   useEffect(() => {
     if (user) {
       getProfile(user.id).then(({ data }) => {
