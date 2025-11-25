@@ -5,6 +5,7 @@ import type { MapRef } from 'react-map-gl/maplibre'
 import { Outlet } from 'react-router-dom'
 import { Header } from './flight-header/Header'
 import { SkyTrackMap } from './skyTrackMap/skyTrackMap'
+import { Toaster } from './ui/sonner'
 
 export function Layout() {
 	const { lastAction, triggerId } = useAppSelector(state => state.map)
@@ -75,6 +76,7 @@ export function Layout() {
 				</main>
 				<Header />
 			</div>
+			<Toaster position="top-center" richColors />
 		</div>
 	)
 }

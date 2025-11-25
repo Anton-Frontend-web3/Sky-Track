@@ -12,30 +12,53 @@ import { HomePage } from './pages/HomePage/HomePage.tsx'
 import { ThemeProvider } from './provider/ThemeProvider.tsx'
 import { store } from './store/store.ts'
 
+import { ProtectedRoute } from '@/components/custom-ui/ProtectedRoute'
+import ProfilePage from '@/pages/profile/ProfilePage.tsx'
+import { AuthProvider } from '@/provider/AuthProvider.tsx'
+import { LoginPage } from './pages/auth/LoginPage.tsx'
+import { RegisterPage } from './pages/auth/RegisterPage.tsx'
 const queryClient = new QueryClient()
+
 createRoot(document.getElementById('root')!).render(
 	<BrowserRouter basename='/Sky-Track/'>
 		<QueryClientProvider client={queryClient}>
-			<ThemeProvider>
-				<LazyMotion features={domAnimation}>
-					<Provider store={store}>
-						<Routes>
-							<Route element={<Layout />}>
-								<Route
-									path='/'
-									element={<HomePage />}
-								/>
-								<Route element={<CenterLayout />}>
+			<AuthProvider>
+				<ThemeProvider>
+					<LazyMotion features={domAnimation}>
+						<Provider store={store}>
+							<Routes>
+								<Route element={<Layout />}>
 									<Route
-										path='/favorites'
-										element={<Favorites />}
+										path='/'
+										element={<HomePage />}
 									/>
+									<Route element={<CenterLayout />}>
+										<Route element={<ProtectedRoute />}>
+											<Route
+												path='/favorites'
+												element={<Favorites />}
+											/>
+											<Route
+												path='/profile'
+												element={<ProfilePage />}
+											/>
+										</Route>
+
+										<Route
+											path='/login'
+											element={<LoginPage />}
+										/>
+										<Route
+											path='/register'
+											element={<RegisterPage />}
+										/>
+									</Route>
 								</Route>
-							</Route>
-						</Routes>
-					</Provider>
-				</LazyMotion>
-			</ThemeProvider>
+							</Routes>
+						</Provider>
+					</LazyMotion>
+				</ThemeProvider>
+			</AuthProvider>
 		</QueryClientProvider>
 	</BrowserRouter>
 )

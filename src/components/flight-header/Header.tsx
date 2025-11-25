@@ -5,7 +5,7 @@ import { MenuItem } from './MenuItem'
 
 export function Header() {
 	return (
-		<header className='bg-background z-10 absolute top-7 left-1/2 gap-1 flex translate-x-[calc(-50%_+_2rem)] xs:-translate-x-1/2  items-center justify-center rounded-3xl '>
+		<header className='bg-background z-50 absolute top-7 left-1/2 gap-1 flex translate-x-[calc(-50%_+_2rem)] xs:-translate-x-1/2  items-center justify-center rounded-3xl '>
 			<nav className='flex gap-3 p-3 sm:gap-1.5'>
 				{menu.map(item => (
 					<MenuItem

@@ -23,7 +23,7 @@ export const menu: IHeaderMenu[] = [
 	{
 		label: 'Profile',
 		icon: UserRound,
-		to: '/user'
+		to: '/profile'
 	},
 
 	{
